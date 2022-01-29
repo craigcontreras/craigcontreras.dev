@@ -1,7 +1,10 @@
+$primary-color: #001cab;
+$secondary-color: #001fbc;
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #001cab;
+    background-color: $primary-color;
 }
 
 .no-events {
@@ -110,7 +113,7 @@ nav a:hover {
     bottom: 0;
     left: 0;
     z-index: 100;
-    background-color: #001cab;
+    background-color: $primary-color;
     opacity: 0;
     pointer-events: none;
     transition: 0.5s ease-out;
