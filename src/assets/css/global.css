@@ -130,38 +130,10 @@ footer {
 
 /* media queries */
 
-@media (max-width: 476px) {
-    footer {
-        font-size: 0.5em;
-        margin: 4em 0;
-    }
-}
-
-@media (min-width: 477px) and (max-width: 768px) {
-    footer {
-        font-size: 0.5em;
-        margin: 4em 0;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 992px) {
+@media (max-width: 1024px) {
     footer {
         font-size: 0.5em;
         font-weight: 900;
-        margin: 4em 0;
-    }
-}
-
-@media (max-width: 992px) {
-    footer {
-        font-size: 0.5em;
-        margin: 4em 0;
-    }
-}
-
-@media (min-width: 1024px) and (max-width: 1119px) {
-    footer {
-        font-size: 0.5em;
         margin: 4em 0;
     }
 }

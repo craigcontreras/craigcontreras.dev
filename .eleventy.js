@@ -8,7 +8,7 @@ module.exports = function (eleventyConfig) {
     });
 
     eleventyConfig.addCollection("sortByDate", function(collection) {
-        return collection.getFilteredByGlob("posts/*.md").sort((a, b) => {
+        return collection.getFilteredByGlob("./src/posts/*.md").sort((a, b) => {
             return b.date - a.date;
         });
     });
