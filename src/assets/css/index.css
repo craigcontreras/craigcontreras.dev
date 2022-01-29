@@ -1,0 +1,297 @@
+/* JS animations */
+
+#keyboard {
+    top: 540px;
+    min-width: 100%;
+    position: absolute;
+    z-index: -2;
+}
+
+#keyboard canvas {
+    max-width: 100%;
+}
+
+#wcyd-anim {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    max-height: 100% !important;
+    min-height: 100% !important;
+    overflow: visible;
+}
+
+#intro-anim {
+    background-color: #001fbc;
+    margin: 0;
+    padding: 6em;
+    position: relative;
+    z-index: -2;
+}
+
+#intro-anim canvas {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+#lets-talk {
+    height: 35%;
+    width: 35%;
+    transition: 0.5s transform;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    margin-left: 6.5em;
+    cursor: pointer;
+}
+
+#lets-talk:hover {
+    transform: scale(1.1);
+}
+
+/* Project section */
+
+#project-section-header, #posts-section-header {
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+#title-date {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#projects, #posts {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project, .post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    padding: 1em 3em;
+    max-width: 80%;
+    transition: 0.5s transform;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-radius: 1em;
+}
+
+.post {
+    background-color: #001fbc;
+}
+
+.project h2, .post h2 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 2em;
+}
+
+.post span {
+    text-align: center;
+}
+
+.project:hover, .post:hover {
+    transform: scale(1.1);
+}
+
+.project a, .post a {
+    font-weight: 900;
+    text-decoration: none;
+    background: none;
+    border: 5px 5px white;
+    border-style: solid;
+    border-radius: 1em;
+    transition: 0.5s transform;
+    padding: 1.5em 3em;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.project p, .post p {
+    font-size: 1.2em;
+    margin: 0 1.5em;
+}
+
+.project a:hover, .post a:hover {
+    transform: translateY(-0.3em);
+}
+
+.project a:active, .post a:active {
+    transform: scale(1.1);
+}
+
+.item {
+    flex-grow: 1;
+}
+
+.post-title {
+    margin-bottom: 0.25em;
+}
+
+.post-date {
+    margin-bottom: 1em;
+}
+
+#disgusting-world {
+    background-image: url("../img/disgusting-world/disgusting-world-bg.png");
+}
+
+#the-fakebook-monopoly {
+    background-image: url("../img/the-fakebook-monopoly/img-1.png");
+    background-size: cover;
+}
+
+/* Navbar */
+#home {
+    pointer-events: none;
+    opacity: 100%;
+}
+
+/* Content styling */
+
+main {
+    margin: 0;
+    padding: 0;
+}
+
+.headers {
+    margin-top: 2em;
+    margin-left: 2em;
+    font-size: 4em;
+    font-weight: 900;
+    width: 50%;
+    position: relative;
+    z-index: -3;
+}
+
+header #header-img, header #project-img {
+    max-height: 25rem;
+    max-width: 25rem;
+    object-fit: cover;
+    border-radius: 1em;
+    position: absolute;
+    z-index: -1;
+    -webkit-box-shadow: 5px 5px 24px -10px rgba(1,0,48,0.25); 
+    box-shadow: 5px 5px 24px -10px rgba(1,0,48,0.25);
+}
+
+p {
+    font-size: 1.5em;
+    margin-left: 5.5em;
+    font-weight: 500;
+}
+
+#about-me-section a {
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 3em;
+    margin-left: 2.75em;
+}
+
+#about-me-section {
+    width: 50%;
+    margin-bottom: 1em;
+}
+
+/* Media queries */
+
+@media (max-width: 476px) {
+    #intro-anim svg {
+        transform: scale(1.65) !important;
+    }
+}
+
+@media (min-width: 477px) and (max-width: 768px) {
+    #intro-anim svg {
+        transform: scale(1.25) !important;
+    }
+}
+
+@media (max-width: 992px) {
+    #about-me-section {
+        width: 100%;
+    }
+
+    p {
+        font-size: 3em;
+        margin: auto;
+        max-width: 75%;
+        padding-bottom: 1em;
+    }
+
+    .headers {
+        font-size: 3em;
+        margin-left: 0.9em;
+    }
+
+    #lets-talk {
+        width: 35%;
+        height: 35%;
+        margin-left: 1.75em;
+    }
+
+    .project, .post {
+        flex-direction: column;
+        max-width: 60%;
+    }
+    
+    .project h2, .post h2 {
+        text-align: center;
+        font-size: 3em;
+    }
+
+    .project p, .post p {
+        text-align: center;
+        font-size: 1.25em;
+    }
+
+    .project a, .post a {
+        margin-top: 2.5em;
+        margin-bottom: 2.5em;
+    }
+
+    #the-fakebook-monopoly p {
+        margin-bottom: 2.5em;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1119px) {
+    #about-me-section {
+        width: 100%;
+    }
+
+    p {
+        font-size: 3em;
+        margin: auto;
+        max-width: 75%;
+        padding-bottom: 1em;
+    }
+
+    .headers {
+        font-size: 3em;
+        margin-left: 0.9em;
+    }
+
+    #lets-talk {
+        width: 35%;
+        height: 35%;
+        margin-left: 1.75em;
+    }
+    
+    .project h2, .post h2 {
+        text-align: center;
+        font-size: 2.5em;
+    }
+
+    .project p, .post p {
+        font-size: 1.05em;
+    }
+
+    .project a, .post a {
+        margin-top: 2.5em;
+        margin-bottom: 2.5em;
+    }
+}

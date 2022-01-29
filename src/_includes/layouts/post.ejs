@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% const finalTitle=title + " | Blog - Craig Contreras" %>
+        <meta name="og:site_name" content=<%=finalTitle %>>
+        <meta property="og:title" content=<%=finalTitle %>>
+        <title>
+            <%= finalTitle %>
+        </title>
+        <%- include("metadata.ejs") %>
+            <link rel="stylesheet" href="/assets/css/post.css">
+            <link rel="stylesheet" href="/assets/css/global.css">
+</head>
+
+<body>
+    <%- include("navbar.ejs") %>
+        <div class="transition transition-1 is-active"></div>
+        <main>
+            <article>
+                <h1>
+                    <%= title %>
+                </h1>
+                <span><time datetime=<%=date %>><%= js.dateReadable(date) %></time></span>
+                <%- content %>
+                    <footer>
+                        <p>&#169; 2022 Craig Contreras</p>
+                    </footer>
+            </article>
+        </main>
+        <script src="/assets/js/index.js"></script>
+        <script src="/assets/js/navbar.js"></script>
+        <script src="/assets/js/page-transition.js"></script>
+</body>
+
+</html>

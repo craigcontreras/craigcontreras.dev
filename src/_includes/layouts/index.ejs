@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="og:site_name" content=<%= title %>>
+    <meta property="og:title" content=<%= title %>>
+    <title>
+        <%= title %>
+    </title>
+    <%- include("metadata.ejs") %>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/global.css">
+</head>
+
+<body>
+    <%- include("navbar.ejs") %>
+        <div class="transition transition-1 is-active"></div>
+        <main>
+            <article>
+                <header>
+                    <div id="intro-anim" aria-label="Animation that says Hi, I'm Craig"></div>
+                    <img loading="lazy" class="hidden" id="header-img" alt="Image of Craig Contreras">
+                </header>
+                <div id="content">
+                    <h2 class="slide-animation headers">I'm a student <span id="header-emoji">&#x1F4D6;</span> building
+                        things for the web.</h2>
+                    <section id="about-me-section">
+                        <p class="slide-animation">Heyo &#x1F44B; I'm Craig Contreras! I currently reside in the United
+                            States, and am currently attending high school.</p>
+                        <p class="slide-animation">If you see something on the website that you like, feel free to
+                            contact
+                            me.
+                        </p>
+                        <p class="slide-animation">Oh, and welcome to my little space in the corner of the Internet.</p>
+                    </section>
+                    <section aria-label="Animation of keyboard constantly rotating" id="keyboard"></section>
+                    <section aria-label="What can you do? animation reel" class="sticky" id="wcyd-anim"></section>
+                    <div id="spacer"></div>
+                    <section id="spacer"></section>
+                    <section id="project-section" class="hidden">
+                        <div class="slide-animation">
+                            <div id="lets-talk"></div>
+                        </div>
+                        <h2 class="slide-animation headers" id="project-section-header">Projects</h2>
+                        <section class="slide-animation" id="projects">
+                            <div aria-label="Disgusting World project" class="project"
+                                id="disgusting-world">
+                                <h2 class="item">Disgusting World</h2>
+                                <p class="item">A clothing brand founded in 2022 by Matthew Novick & I.</p>
+                                <a href="https://disgusting.world/" class="item">Visit</a>
+                            </div>
+                            <div aria-label="The Fakebook Monopoly project" class="project"
+                                id="the-fakebook-monopoly">
+                                <h2 class="item">The Fakebook Monopoly</h2>
+                                <p class="item">A game I made in 8th grade. It was pretty bad. Go see for yourself.</p>
+                            </div>
+                        </section>
+                    </section>
+                    <section id="blog-section" class="hidden">
+                        <h2 class="slide-animation headers" id="posts-section-header">Notes</h2>
+                        <section id="posts">
+                            <% for (let post of collections.sortByDate) { %>
+                                <div class="post slide-animation">
+                                    <div id="title-date">
+                                        <h2 class="post-title item">
+                                            <%= post.data.title %>
+                                        </h2>
+                                        <span class="post-date item">
+                                            <time datetime=<%=post.data.date %>>
+                                                <%= js.dateReadable(post.data.date) %>
+                                            </time>
+                                        </span>
+                                    </div>
+                                    <p class="item">
+                                        <%- post.data.content.substring(3, 75); %>...
+                                    </p>
+                                    <a href=<%= post.url %> class="item transitionable">Visit</a>
+                                </div>
+                                <% } %>
+                        </section>
+                    </section>
+                    <footer class="hidden">
+                        <p>&#169; 2022 Craig Contreras</p>
+                    </footer>
+                </div>
+            </article>
+        </main>
+        <script src="/assets/js/index.js"></script>
+        <script src="/assets/js/navbar.js"></script>
+        <script src="/assets/js/page-transition.js"></script>
+</body>
+
+</html>

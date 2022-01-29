@@ -1,0 +1,36 @@
+{
+  "name": "craig-heroku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "author": "craigcontreras",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "browserify": "^17.0.0",
+    "ejs": "^3.1.6",
+    "esmify": "^2.1.1",
+    "glob": "^7.2.0",
+    "gulp-buffer": "^0.0.2",
+    "install": "^0.13.0",
+    "lottie-web": "^5.8.1",
+    "luxon": "^2.3.0",
+    "npm": "^8.3.2",
+    "serve": "^13.0.2",
+    "serve-favicon": "^2.5.0",
+    "strip-ansi": "^7.0.1",
+    "three": "^0.136.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "gulp": "^4.0.2",
+    "gulp-tap": "^2.0.0",
+    "snowpack": "^3.8.8"
+  }
+}
