@@ -36,6 +36,7 @@ gulp.task("browserify", function () {
                     regenerator: true
                 }]],
                 global: true,
+                compact: true,
                 sourceMaps : true
             })
             .transform(uglifyify, {
