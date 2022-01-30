@@ -7,6 +7,9 @@ const cleanCSS = require("gulp-clean-css");
 const sass = require("gulp-sass")(require("sass"));
 const sourcemaps = require("gulp-sourcemaps");
 const babelify = require("babelify");
+const packFlat = require('browser-pack-flat');
+const uglifyify = require("uglifyify");
+const shakeify = require("common-shakeify");
 
 gulp.task("sass", function () {
     return gulp.src("src/_includes/sass/*.scss")
@@ -24,13 +27,6 @@ gulp.task("browserify", function () {
         .pipe(tap(function (file) {
             // replace file contents with browserify's bundle stream
             file.contents = browserify(file.path, {
-                plugin : [
-                    [
-                        "uglifyify", {
-                            global: true
-                        }
-                    ]
-                ],
                 debug : true
             }).transform(babelify, {
                 presets : ["@babel/preset-env"],
@@ -39,7 +35,10 @@ gulp.task("browserify", function () {
                 }]],
                 global: true,
                 sourceMaps : true
-            }).bundle();
+            }).transform(uglifyify, {
+                global: true
+            }).plugin(shakeify)
+            .plugin(packFlat).bundle();
 
         }))
 
@@ -50,7 +49,5 @@ gulp.task("browserify", function () {
         .pipe(sourcemaps.write("./"))
         .pipe(gulp.dest("src/assets/js"));
 });
-
-
 
 exports.default = gulp.series(["browserify", "sass"]);
