@@ -6,7 +6,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 let scene, camera, renderer, frameId;
 let header, headerImg;
-let headerAnim, keyboardContainer;
+let keyboardContainer;
 
 window.onbeforeunload = () => window.scrollTo(0, 0);
 
@@ -57,7 +57,7 @@ function animate() {
 }
 
 function loadHeaderAnim() {
-  headerAnim = lottie.loadAnimation({
+  const headerAnim = lottie.loadAnimation({
     container: document.querySelector("#intro-anim"),
     renderer: 'svg',
     loop: false,
@@ -79,7 +79,6 @@ wcydContainerEnter.observe(document.querySelector("#wcyd-anim-trigger"));
 
 async function importWcydAnim() {
   const {loadWcydAnim, attachObserverToWcyd, endlessScroll} = await import("./wcyd-anim.js");
-  console.log("imported");
   loadWcydAnim();
   attachObserverToWcyd();
   document.addEventListener("scroll", endlessScroll); 
