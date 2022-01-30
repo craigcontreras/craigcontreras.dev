@@ -6,9 +6,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 let scene, camera, renderer, frameId;
 let header, headerImg;
-let headerAnim, wcydAnim, wcydObserver, keyboardContainer;
-let scrollEffect = 0, lastScrollTop = 0, animationStart = 0;
-let complete = false;
+let headerAnim, keyboardContainer;
 
 window.onbeforeunload = () => window.scrollTo(0, 0);
 
@@ -68,102 +66,23 @@ function loadHeaderAnim() {
   });
 }
 
-let x = window.matchMedia("(max-width: 992px)");
-function loadWcydAnim() {
-  if (x.matches) {
-    wcydAnim = lottie.loadAnimation({
-      container: document.querySelector("#wcyd-anim"),
-      renderer: 'canvas',
-      loop: false,
-      autoplay: false,
-      path: '/assets/json/wcyd-animation-mobile.json'
-    })
-  } else {
-    wcydAnim = lottie.loadAnimation({
-      container: document.querySelector("#wcyd-anim"),
-      renderer: 'canvas',
-      loop: false,
-      autoplay: false,
-      path: '/assets/json/wcyd-animation-desktop.json',
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMax slice'
-      }
-    })
-  };
-}
-
-function attachObserverToWcyd() {
-  if (x.matches) {
-    wcydObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          document.addEventListener("scroll", playAnimation);
-        } else {
-          document.removeEventListener("scroll", playAnimation);
-        }
-      })
-    });
-  } else {
-    wcydObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio >= 1) {
-          document.addEventListener("scroll", playAnimation);
-        } else {
-          document.removeEventListener("scroll", playAnimation);
-        }
-      })
-    }, {
-      threshold: 1.0
-    });
-  }
-
-  wcydObserver.observe(document.querySelector("#wcyd-anim"));
-}
-
-function playAnimation() {
-  let st = window.pageYOffset || document.documentElement.scrollTop;
-  if (st > lastScrollTop) {
-    wcydAnim.playSegments([animationStart, animationStart + 1], true);
-    if (animationStart >= 432) {
-      complete = true;
-    } else {
-      animationStart++;
+const wcydContainerEnter = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      importWcydAnim();
+      wcydContainerEnter.disconnect();
     }
-  } else {
-    wcydAnim.playSegments([animationStart, animationStart - 1], true);
-    if (animationStart != 0) {
-      animationStart--;
-    } else {
-      document.querySelector("#spacer").style.height = `0vh`;
-      scrollEffect = 0;
-    }
-  }
-  lastScrollTop = st <= 0 ? 0 : st;
-}
+  })
+});
 
-function endlessScroll() {
-  scrollEffect += 1;
-  document.querySelector("#spacer").style.height = `${100 + (scrollEffect * 75)}vh`;
+wcydContainerEnter.observe(document.querySelector("#wcyd-anim-trigger"));
 
-  if (complete) {
-    document.removeEventListener("scroll", endlessScroll);
-    document.querySelector("#wcyd-anim").classList.add("hidden");
-    document.querySelector("#spacer").classList.add("hidden");
-    document.querySelector("#project-section").classList.remove("hidden");
-    document.querySelector("#blog-section").classList.remove("hidden");
-    document.querySelector("footer").classList.remove("hidden");
-    document.querySelector("#spacer").style.display = "none";
-    loadAnimationsLoadedAfter();
-  }
-}
-
-async function loadAnimationsLoadedAfter() {
-  const {createViewAllAnim, assignViewAllEvents, createLetsTalkAnim, assignLetsTalkEvents} = await import("./invisible-animations.js");
-  console.log("imported methods");
-  createViewAllAnim();
-  assignViewAllEvents();
-  createLetsTalkAnim();
-  assignLetsTalkEvents();
+async function importWcydAnim() {
+  const {loadWcydAnim, attachObserverToWcyd, endlessScroll} = await import("./wcyd-anim.js");
+  console.log("imported");
+  loadWcydAnim();
+  attachObserverToWcyd();
+  document.addEventListener("scroll", endlessScroll); 
 }
 
 function init() {
@@ -171,10 +90,6 @@ function init() {
   createScene();
   loadModel();
   window.addEventListener("resize", resize);
-
-  loadWcydAnim();
-  attachObserverToWcyd();
-  document.addEventListener("scroll", endlessScroll);
 
   header = document.querySelector("header");
   headerImg = document.querySelector("#header-img");

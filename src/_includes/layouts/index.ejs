@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <%- include("navbar.ejs") %>
         <div class="transition transition-1 is-active"></div>
         <main>
             <article>
@@ -34,6 +33,7 @@
                         <p class="slide-animation">Oh, and welcome to my little space in the corner of the Internet.</p>
                     </section>
                     <section aria-label="Animation of keyboard constantly rotating" id="keyboard"></section>
+                    <section id="wcyd-anim-trigger"></section>
                     <section aria-label="What can you do? animation reel" class="sticky" id="wcyd-anim"></section>
                     <div id="spacer"></div>
                     <section id="spacer"></section>
@@ -92,6 +92,8 @@
                 </div>
             </article>
         </main>
+
+    <%- include("navbar.ejs") %>
         <script src="/assets/js/index.js"></script>
         <script src="/assets/js/navbar.js"></script>
         <script src="/assets/js/page-transition.js"></script>
