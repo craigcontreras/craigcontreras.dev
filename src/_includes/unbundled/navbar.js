@@ -3,7 +3,7 @@
 import lottie from "lottie-web";
 
 const hamburgerAnim = lottie.loadAnimation({
-    container: document.querySelector("#hamburger-icon"),
+    cçontainer: document.querySelector("#hamburger-icon"),
     renderer: 'svg',
     loop: false,
     autoplay: false,

@@ -23,7 +23,16 @@ gulp.task("browserify", function () {
         // transform file objects using gulp-tap plugin
         .pipe(tap(function (file) {
             // replace file contents with browserify's bundle stream
-            file.contents = browserify(file.path, { debug: true }).transform(babelify, {
+            file.contents = browserify(file.path, {
+                plugin : [
+                    [
+                        "uglifyify", {
+                            global: true
+                        }
+                    ]
+                ],
+                debug : true
+            }).transform(babelify, {
                 presets : ["@babel/preset-env"],
                 plugins : [["@babel/plugin-transform-runtime", {
                     regenerator: true
@@ -36,8 +45,8 @@ gulp.task("browserify", function () {
 
         // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(sourcemaps.write("./"))
         .pipe(gulp.dest("src/assets/js"));
 });
