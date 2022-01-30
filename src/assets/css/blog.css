@@ -166,28 +166,54 @@ footer {
     transform: translate(0, 100vh);
   }
 }
-h1 {
-  text-align: center;
+#intro-anim {
+  margin: 0;
+  padding: 6em;
+  background-color: #001fbc;
+  position: relative;
+  z-index: -2;
+}
+
+.headers {
+  margin-left: 1em;
+  margin-bottom: 0;
   font-size: 3em;
   font-weight: 900;
+  width: 50%;
 }
 
-h3 {
+#top-post {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  padding: 2em;
+  background-color: #001fbc;
+}
+#top-post h2 {
+  margin: 0.5em 1em;
   font-size: 2em;
 }
-
-span {
-  display: block;
-  text-align: center;
+#top-post p {
+  margin: 1em 2em;
 }
 
-article {
-  margin-top: 5em;
-  margin-left: auto;
-  margin-right: auto;
-  width: 76%;
+.post {
+  background-color: #001fbc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  padding: 1em 3em;
+  border-radius: 1em;
+  width: 35%;
+  height: 35%;
 }
 
-p {
-  font-size: 1.5em;
+#older-posts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
 }

@@ -1,0 +1,55 @@
+@use "partials/global";
+
+#intro-anim {
+    margin: 0;
+    padding: 6em;
+    background-color: global.$secondary-color;
+    position: relative;
+    z-index: -2;
+}
+
+.headers {
+    margin-left: 1em;
+    margin-bottom: 0;
+    font-size: 3em;
+    font-weight: 900;
+    width: 50%;
+}
+
+#top-post {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    padding: 2em;
+    background-color: global.$secondary-color;
+    
+    h2 { 
+        margin: 0.5em 1em;
+        font-size: 2em;
+    }
+
+    p {
+        margin: 1em 2em;
+    }
+}
+
+.post {
+    background-color: global.$secondary-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    padding: 1em 3em;
+    border-radius: 1em;
+    width: 35%;
+    height: 35%;
+}
+
+#older-posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+}

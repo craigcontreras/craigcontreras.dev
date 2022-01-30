@@ -17,6 +17,7 @@
     "glob": "^7.2.0",
     "gulp-buffer": "^0.0.2",
     "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
     "install": "^0.13.0",
     "lottie-web": "^5.8.1",
     "luxon": "^2.3.0",
@@ -25,7 +26,8 @@
     "serve": "^13.0.2",
     "serve-favicon": "^2.5.0",
     "strip-ansi": "^7.0.1",
-    "three": "^0.136.0"
+    "three": "^0.136.0",
+    "uglify-js": "^3.15.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",

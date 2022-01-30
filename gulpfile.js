@@ -2,6 +2,7 @@ const gulp = require("gulp");
 const tap = require("gulp-tap");
 const buffer = require("gulp-buffer");
 const browserify = require("browserify");
+const uglify = require("gulp-uglify");
 const sass = require("gulp-sass")(require("sass"));
 
 gulp.task("sass", function () {
@@ -28,8 +29,11 @@ gulp.task("browserify", function () {
         }))
 
         // transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)
-        .pipe(gulp.dest("src/assets/js"))
-        .pipe(buffer());
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest("src/assets/js"));
 });
+
+
 
 exports.default = gulp.series(["browserify", "sass"]);

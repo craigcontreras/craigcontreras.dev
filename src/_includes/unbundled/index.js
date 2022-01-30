@@ -6,7 +6,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 let scene, camera, renderer, frameId;
 let header, headerImg;
-let headerAnim, wcydAnim, wcydObserver, letsTalk, keyboardContainer, letsTalkContainer;
+let headerAnim, wcydAnim, wcydObserver, letsTalk, viewAll, viewAllContainer, keyboardContainer, letsTalkContainer;
 let scrollEffect = 0, lastScrollTop = 0, animationStart = 0;
 let complete = false;
 
@@ -168,6 +168,36 @@ function assignLetsTalkEvents() {
   });
 }
 
+function createViewAllAnim() {
+  viewAll = lottie.loadAnimation({
+    container: document.querySelector("#view-all-posts"),
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: "/assets/json/view-all.json"
+  });
+}
+
+function assignViewAllEvents() {
+  viewAllContainer = document.querySelector("#view-all-posts");
+  viewAllContainer.addEventListener("mouseenter", e => {
+    e.stopPropagation();
+    viewAll.play();
+    viewAll.loop = true;
+  })
+
+  viewAllContainer.addEventListener("mouseleave", e => {
+    viewAll.loop = false;
+  })
+
+  viewAllContainer.addEventListener("click", e => {
+    document.querySelector(".transition").classList.add("is-active");
+    setTimeout(() => {
+        window.location.replace("/blog.html");
+    }, 500);
+  });
+}
+
 function endlessScroll() {
   scrollEffect += 1;
   document.querySelector("#spacer").style.height = `${100 + (scrollEffect * 75)}vh`;
@@ -185,57 +215,48 @@ function endlessScroll() {
 }
 
 function init() {
-  if (document.querySelector("#intro-anim")) {
-    loadHeaderAnim();
-  }
+  loadHeaderAnim();
+  createLetsTalkAnim();
+  assignLetsTalkEvents();
+  createViewAllAnim();
+  assignViewAllEvents();
 
-  if (document.querySelector("#lets-talk")) {
-    createLetsTalkAnim();
-    assignLetsTalkEvents();
-  }
+  createScene();
+  loadModel();
+  window.addEventListener("resize", resize);
 
-  if (document.querySelector("#keyboard")) {
-    createScene();
-    loadModel();
-    window.addEventListener("resize", resize);
-  }
+  loadWcydAnim();
+  attachObserverToWcyd();
+  document.addEventListener("scroll", endlessScroll);
 
-  if (document.querySelector("#wcyd-anim")) {
-    loadWcydAnim();
-    attachObserverToWcyd();
-    document.addEventListener("scroll", endlessScroll);
-  }
+  header = document.querySelector("header");
+  headerImg = document.querySelector("#header-img");
 
-  if (document.querySelector("header")) {
-    header = document.querySelector("header");
-    headerImg = document.querySelector("#header-img");
+  header.addEventListener("mouseenter", (e) => {
+    const paths = ["/_includes/img/img-1.png", "/_includes/img/img-2.jpg", "/_includes/img/img-3.jpg", "/_includes/img/img-4.jpg", "/_includes/img/img-5.jpg"];
+    const randomImg = paths[Math.floor(Math.random() * paths.length)];
+    headerImg.src = randomImg;
+    // set mouse cursor to the mouse pointer's position by using margin
+    headerImg.style.left = e.clientX + "px";
+    headerImg.style.top = e.clientY + "px";
 
-    header.addEventListener("mouseenter", (e) => {
-      const paths = ["/_includes/img/img-1.png", "/_includes/img/img-2.jpg", "/_includes/img/img-3.jpg", "/_includes/img/img-4.jpg", "/_includes/img/img-5.jpg"];
-      const randomImg = paths[Math.floor(Math.random() * paths.length)];
-      headerImg.src = randomImg;
-      // set mouse cursor to the mouse pointer's position by using margin
-      headerImg.style.left = e.clientX + "px";
-      headerImg.style.top = e.clientY + "px";
-    
-      const random = (Math.random() * -25 + 1) + (Math.random() * 25 + 1);
-    
-      headerImg.style.transform = `rotate(${random}deg) translate(-50%)`;
-      headerImg.classList.remove("hidden");
-    });
-    
+    const random = (Math.random() * -25 + 1) + (Math.random() * 25 + 1);
+
+    headerImg.style.transform = `rotate(${random}deg) translate(-50%)`;
+    headerImg.classList.remove("hidden");
+
     // when it leaves header hide the image
     header.addEventListener("mouseleave", () => {
       headerImg.classList.add("hidden");
     });
-    
+
     // on mouse move update image position
     header.addEventListener("mousemove", (e) => {
       // set mouse cursor to the mouse pointer's position by using margin
       headerImg.style.left = e.clientX + "px";
       headerImg.style.top = e.clientY + "px";
-    });    
-  }
+    });
+  });
 }
 
 function unload() {
@@ -248,27 +269,3 @@ function unload() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-// using intersection observer to see when elements enter the viewport
-let delay = 0;
-
-const slideInObserver = new IntersectionObserver(entries => {
-  entries.forEach((entry) => {
-    if (entry.intersectionRatio > 0) {
-      setTimeout(() => {
-        entry.target.classList.remove("not-visible");
-        entry.target.classList.add("slide-in-animation");
-        delay += 5;
-      }, delay * 20);
-    } else {
-      delay = 0;
-      entry.target.classList.add("not-visible");
-      entry.target.classList.remove("slide-in-animation");
-    }
-  });
-});
-
-const slideAnimations = document.querySelectorAll(".slide-animation");
-slideAnimations.forEach((element) => {
-  slideInObserver.observe(element);
-});

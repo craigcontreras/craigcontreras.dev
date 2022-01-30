@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="og:site_name" content=<%=title %>>
+    <meta property="og:title" content=<%=title %>>
+    <title>
+        <%= title %>
+    </title>
+    <%- include("metadata.ejs") %>
+        <!-- stylesheets -->
+        <link rel="stylesheet" href="/assets/css/blog.css">
+</head>
+
+<body>
+    <div class="transition transition-1 is-active"></div>
+    <main>
+        <article>
+            <header>
+                <div id="intro-anim" aria-label="Blog header"></div>
+            </header>
+            <div id="content">
+                <h2 class="headers slide-animation">Most recent post</h2>
+                <div id="top-post" class="slide-animation">
+                    <h2><%= collections.sortByDate[0].data.title %></h2>
+                    <p><%= collections.sortByDate[0].data.longDesc %></p>
+                </div>
+                <h2 class='headers slide-animation'>Older posts</h2>
+                <section id="older-posts" class="slide-animation">
+                    <% let post; %>
+                    <% for (let i = 0; i < collections.sortByDate.length; i++) { %>
+                        <% post = collections.sortByDate[i]; %>
+                        <% if (i > 0) { %>
+                            <div class="post">
+                                <h2><%= post.data.title %></h2>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </section>
+            </div>
+            <footer>
+                <p>&#169; 2022 Craig Contreras</p>
+            </footer>
+        </article>
+    </main>
+    <%- include("navbar.ejs") %>
+        <script src="/assets/js/blog.js"></script>
+        <script src="/assets/js/navbar.js"></script>
+        <script src="/assets/js/page-transition.js"></script>
+</body>
+
+</html>

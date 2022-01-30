@@ -19,3 +19,27 @@ window.onload = () => {
         })
     }
 }
+
+// using intersection observer to see when elements enter the viewport
+let delay = 0;
+
+const slideInObserver = new IntersectionObserver(entries => {
+  entries.forEach((entry) => {
+    if (entry.intersectionRatio > 0) {
+      setTimeout(() => {
+        entry.target.classList.remove("not-visible");
+        entry.target.classList.add("slide-in-animation");
+        delay += 5;
+      }, delay * 20);
+    } else {
+      delay = 0;
+      entry.target.classList.add("not-visible");
+      entry.target.classList.remove("slide-in-animation");
+    }
+  });
+});
+
+const slideAnimations = document.querySelectorAll(".slide-animation");
+slideAnimations.forEach((element) => {
+  slideInObserver.observe(element);
+});

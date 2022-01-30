@@ -1,4 +1,4 @@
-@use "partials/_global.scss";
+@use "partials/global";
 
 /* JS animations */
 
@@ -24,19 +24,14 @@
 }
 
 #intro-anim {
-    background-color: $secondary-color;
+    background-color: global.$secondary-color;
     margin: 0;
     padding: 6em;
     position: relative;
     z-index: -2;
 }
 
-#intro-anim canvas {
-    min-height: 100%;
-    min-width: 100%;
-}
-
-#lets-talk {
+#lets-talk, #view-all-posts {
     height: 35%;
     width: 35%;
     transition: 0.5s transform;
@@ -45,7 +40,13 @@
     cursor: pointer;
 }
 
-#lets-talk:hover {
+#view-all-posts {
+    margin-top: 2em;
+    width: 25%;
+    height: 25%;
+}
+
+#lets-talk:hover, #view-all-posts:hover {
     transform: scale(1.1);
 }
 
@@ -83,7 +84,7 @@
 }
 
 .post {
-    background-color: $secondary-color;
+    background-color: global.$secondary-color;
 }
 
 .project h2, .post h2 {
@@ -217,10 +218,16 @@ p {
         margin-left: 0.9em;
     }
 
-    #lets-talk {
+    #lets-talk, #view-all-posts {
         width: 50%;
         height: 50%;
         margin-left: 1.75em;
+    }
+
+    #view-all-posts {
+        margin-top: 1em;
+        width: 35%;
+        height: 35%;
     }
     
     .project h2, .post h2 {
@@ -268,10 +275,34 @@ p {
     #intro-anim svg {
         transform: scale(1.25) !important;
     }
+
+    #lets-talk, #view-all-posts {
+        width: 70%;
+        height: 70%;
+        margin-left: 1.75em;
+    }
+
+    #view-all-posts {
+        margin-top: 1em;
+        width: 45%;
+        height: 45%;
+    }
 }
 
 @media (max-width: 476px) {
     #intro-anim svg {
         transform: scale(1.65) !important;
+    }
+
+    #lets-talk, #view-all-posts {
+        width: 85%;
+        height: 85%;
+        margin-left: 1.75em;
+    }
+
+    #view-all-posts {
+        margin-top: 1em;
+        width: 70%;
+        height: 70%;
     }
 }

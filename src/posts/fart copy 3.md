@@ -1,7 +1,7 @@
 ---
-title: Hello World
+title: Fart
 tags: post
-date: 2022-01-24
+date: 2022-01-28
 layout: layouts/post.ejs
 desc: Basic blogging feature. There's really nothing special about it rig...
 longDesc: Basic blogging feature. There's really nothing special about it right now. Just thought it was fun to put together. Oh, maybe a loading and unloading animation before you go to the next pa...

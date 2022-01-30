@@ -89,7 +89,7 @@ nav {
     display: none;
 }
 
-#home {
+#blog {
     margin-bottom: 2em;
 }
 
@@ -126,19 +126,9 @@ nav a:hover {
 
 /* footer */
 footer {
-    font-size: 1em;
-    margin: 4em 0;
+    font-size: 14px;
+    margin: 2rem;
     opacity: 50%;
-}
-
-/* media queries */
-
-@media (max-width: 1024px) {
-    footer {
-        font-size: 0.5em;
-        font-weight: 900;
-        margin: 4em 0;
-    }
 }
 
 /* animations */

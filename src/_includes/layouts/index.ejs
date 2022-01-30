@@ -18,7 +18,7 @@
         <main>
             <article>
                 <header>
-                    <div id="intro-anim" aria-label="Animation that says Hi, I'm Craig"></div>
+                    <div id="intro-anim" aria-label="Homepage header"></div>
                     <img loading="lazy" class="hidden" id="header-img" alt="Image of Craig Contreras">
                 </header>
                 <div id="content">
@@ -57,27 +57,34 @@
                         </section>
                     </section>
                     <section id="blog-section" class="hidden">
-                        <h2 class="slide-animation headers" id="posts-section-header">Notes</h2>
+                        <h2 class="slide-animation headers" id="posts-section-header">Blogs</h2>
                         <section id="posts">
-                            <% for (let post of collections.sortByDate) { %>
-                                <div class="post slide-animation">
-                                    <div id="title-date">
-                                        <h2 class="post-title item">
-                                            <%= post.data.title %>
-                                        </h2>
-                                        <span class="post-date item">
-                                            <time datetime=<%=post.data.date %>>
-                                                <%= js.dateReadable(post.data.date) %>
-                                            </time>
-                                        </span>
+                            <% let post; %>
+                            <% for (let i = 0; i < collections.sortByDate.length; i++) { %>
+                                <% post = collections.sortByDate[i]; %>
+                                <% if (i < 3) { %>
+                                    <div class="post slide-animation">
+                                        <div id="title-date">
+                                            <h2 class="post-title item">
+                                                <%= post.data.title %>
+                                            </h2>
+                                            <span class="post-date item">
+                                                <time datetime=<%=post.data.date %>>
+                                                    <%= js.dateReadable(post.data.date) %>
+                                                </time>
+                                            </span>
+                                        </div>
+                                        <p class="item">
+                                            <%= post.data.desc; %>
+                                        </p>
+                                        <a href=<%= post.url %> class="item transitionable">Visit</a>
                                     </div>
-                                    <p class="item">
-                                        <%- post.data.content.substring(3, 75); %>...
-                                    </p>
-                                    <a href=<%= post.url %> class="item transitionable">Visit</a>
-                                </div>
                                 <% } %>
+                            <% } %>
                         </section>
+                        <div class="slide-animation">
+                            <div id="view-all-posts"></div>
+                        </div>
                     </section>
                     <footer class="hidden">
                         <p>&#169; 2022 Craig Contreras</p>
