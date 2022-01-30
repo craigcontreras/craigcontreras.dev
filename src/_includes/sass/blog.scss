@@ -21,6 +21,9 @@
     margin-bottom: 0.5em;
     padding: 2em;
     background-color: global.$secondary-color;
+    cursor: pointer;
+    transition: 2s transform;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     
     h2 { 
         margin: 0.5em 1em;
@@ -30,6 +33,14 @@
     p {
         margin: 1em 2em;
     }
+
+    a {
+        display: none;
+    }
+}
+
+#top-post:hover, .post:hover {
+    transform: scale(1.05);
 }
 
 .post {
@@ -43,6 +54,9 @@
     border-radius: 1em;
     width: 35%;
     height: 35%;
+    cursor: pointer;
+    transition: 2s transform;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 #older-posts {

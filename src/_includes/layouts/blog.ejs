@@ -25,19 +25,25 @@
                 <div id="top-post" class="slide-animation">
                     <h2><%= collections.sortByDate[0].data.title %></h2>
                     <p><%= collections.sortByDate[0].data.longDesc %></p>
+                    <a href=<%= collections.sortByDate[0].url %>></a>
                 </div>
                 <h2 class='headers slide-animation'>Older posts</h2>
                 <section id="older-posts" class="slide-animation">
                     <% let post; %>
-                    <% for (let i = 0; i < collections.sortByDate.length; i++) { %>
-                        <% post = collections.sortByDate[i]; %>
-                        <% if (i > 0) { %>
-                            <div class="post">
-                                <h2><%= post.data.title %></h2>
-                            </div>
-                        <% } %>
+                    <% if (collections.sortByDate.length > 1) { %>
+                        <% for (let i = 0; i < collections.sortByDate.length; i++) { %>
+                            <% post = collections.sortByDate[i]; %>
+                            <% if (i > 0) { %>
+                                <div class="post">
+                                    <h2><%= post.data.title %></h2>
+                                    <a href=<%= post.url %>></a>
+                                </div>
+                            <% } %>
+                        <% } %>    
+                    <% } else { %>
+                        <h2>No older posts available :(</h2>
                     <% } %>
-                </section>
+                    </section>
             </div>
             <footer>
                 <p>&#169; 2022 Craig Contreras</p>

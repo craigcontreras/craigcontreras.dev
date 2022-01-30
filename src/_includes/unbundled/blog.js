@@ -11,3 +11,13 @@ const headerAnim = lottie.loadAnimation({
     autoplay: true,
     path: '/assets/json/blog-header.json'
 });
+
+document.querySelector("#top-post").addEventListener("click", e => {
+    let target = e.target.querySelector('a').href;
+    console.log(target);
+                
+    document.querySelector(".transition").classList.add("is-active");
+    setTimeout(() => {
+        window.location.replace(target);
+    }, 500);
+});
