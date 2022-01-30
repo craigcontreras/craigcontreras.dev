@@ -10,6 +10,7 @@ const babelify = require("babelify");
 const packFlat = require('browser-pack-flat');
 const uglifyify = require("uglifyify");
 const shakeify = require("common-shakeify");
+const bundleCollapser = require("bundle-collapser");
 
 gulp.task("sass", function () {
     return gulp.src("src/_includes/sass/*.scss")
@@ -28,17 +29,20 @@ gulp.task("browserify", function () {
             // replace file contents with browserify's bundle stream
             file.contents = browserify(file.path, {
                 debug : true
-            }).transform(babelify, {
+            }).plugin(shakeify)
+            .transform(babelify, {
                 presets : ["@babel/preset-env"],
                 plugins : [["@babel/plugin-transform-runtime", {
                     regenerator: true
                 }]],
                 global: true,
                 sourceMaps : true
-            }).transform(uglifyify, {
+            })
+            .transform(uglifyify, {
                 global: true
-            }).plugin(shakeify)
-            .plugin(packFlat).bundle();
+            })
+            .plugin(packFlat)
+            .bundle();
 
         }))
 

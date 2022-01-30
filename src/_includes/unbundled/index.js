@@ -1,7 +1,7 @@
 "use strict";
 
-import lottie from "lottie-web";
-import * as THREE from "three";
+import lottie from "lottie-web/build/player/lottie_light.min.js";
+import { Scene, PerspectiveCamera, WebGLRenderer, Color, AmbientLight } from "three";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 let scene, camera, renderer, frameId;
@@ -11,19 +11,19 @@ let keyboardContainer;
 window.onbeforeunload = () => window.scrollTo(0, 0);
 
 function createScene() {
-  scene = new THREE.Scene(); //set up the scene
-  camera = new THREE.PerspectiveCamera(
+  scene = new Scene(); //set up the scene
+  camera = new PerspectiveCamera(
     60, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(0, 0, 1.25);
-  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer = new WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   keyboardContainer = document.querySelector("#keyboard")
   keyboardContainer.append(renderer.domElement);
 }
 
 function loadModel() {
-  const color = new THREE.Color("rgb(0, 12, 165)");
-  var ambient = new THREE.AmbientLight(color);
+  const color = new Color("rgb(0, 12, 165)");
+  var ambient = new AmbientLight(color);
   scene.add(ambient);
 
   const loader = new OBJLoader();

@@ -1,4 +1,4 @@
-import lottie from "lottie-web";
+import lottie from "lottie-web/build/player/lottie_light.min.js";
 
 let wcydAnim, wcydObserver;
 let scrollEffect = 0, lastScrollTop = 0, animationStart = 0;
@@ -9,7 +9,7 @@ export function loadWcydAnim() {
     if (x.matches) {
         wcydAnim = lottie.loadAnimation({
             container: document.querySelector("#wcyd-anim"),
-            renderer: 'canvas',
+            renderer: 'svg',
             loop: false,
             autoplay: false,
             path: '/assets/json/wcyd-animation-mobile.json'
@@ -17,7 +17,7 @@ export function loadWcydAnim() {
     } else {
         wcydAnim = lottie.loadAnimation({
             container: document.querySelector("#wcyd-anim"),
-            renderer: 'canvas',
+            renderer: 'svg',
             loop: false,
             autoplay: false,
             path: '/assets/json/wcyd-animation-desktop.json',

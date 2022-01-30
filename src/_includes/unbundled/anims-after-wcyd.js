@@ -1,6 +1,6 @@
 "use strict";
 
-import lottie from "lottie-web";
+import lottie from "lottie-web/build/player/lottie_light.min.js";
 
 let letsTalk, viewAll, viewAllContainer, letsTalkContainer;
 

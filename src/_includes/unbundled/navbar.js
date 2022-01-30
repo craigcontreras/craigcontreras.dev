@@ -1,6 +1,6 @@
 "use strict";
 
-import lottie from "lottie-web";
+import lottie from "lottie-web/build/player/lottie_light.min.js";
 
 const hamburgerAnim = lottie.loadAnimation({
     container: document.querySelector("#hamburger-icon"),
