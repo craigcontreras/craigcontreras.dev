@@ -3,11 +3,15 @@ const tap = require("gulp-tap");
 const buffer = require("gulp-buffer");
 const browserify = require("browserify");
 const uglify = require("gulp-uglify");
+const cleanCSS = require("gulp-clean-css");
 const sass = require("gulp-sass")(require("sass"));
 
 gulp.task("sass", function () {
     return gulp.src("src/_includes/sass/*.scss")
         .pipe(sass().on("error", sass.logError))
+        .pipe(cleanCSS({
+            compatibility : "ie8"
+        }))
         .pipe(gulp.dest("src/assets/css"))
 });
 
