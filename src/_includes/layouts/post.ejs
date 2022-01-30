@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
+    <%- include("metadata.ejs") %>
     <% const finalTitle=title + " | Blog - Craig Contreras" %>
         <meta name="og:site_name" content=<%=finalTitle %>>
         <meta property="og:title" content=<%=finalTitle %>>
+        <meta property="og:description" content=<%= desc %>">
         <title>
             <%= finalTitle %>
         </title>
-        <%- include("metadata.ejs") %>
             <link rel="stylesheet" href="/assets/css/post.css">
 </head>
 

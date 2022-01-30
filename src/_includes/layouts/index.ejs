@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
+    <%- include("metadata.ejs") %>
     <meta name="og:site_name" content=<%= title %>>
     <meta property="og:title" content=<%= title %>>
+    <meta property="og:description" content=<%= description %>>
     <title>
         <%= title %>
     </title>
-    <%- include("metadata.ejs") %>
     <!-- stylesheets -->
     <link rel="stylesheet" href="/assets/css/index.css">
 </head>
