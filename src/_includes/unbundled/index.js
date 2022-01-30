@@ -6,7 +6,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 let scene, camera, renderer, frameId;
 let header, headerImg;
-let headerAnim, wcydAnim, wcydObserver, letsTalk, viewAll, viewAllContainer, keyboardContainer, letsTalkContainer;
+let headerAnim, wcydAnim, wcydObserver, keyboardContainer;
 let scrollEffect = 0, lastScrollTop = 0, animationStart = 0;
 let complete = false;
 
@@ -141,86 +141,33 @@ function playAnimation() {
   lastScrollTop = st <= 0 ? 0 : st;
 }
 
-function createLetsTalkAnim() {
-  letsTalk = lottie.loadAnimation({
-    container: document.querySelector("#lets-talk"),
-    renderer: 'svg',
-    loop: false,
-    autoplay: false,
-    path: "/assets/json/letstalk.json"
-  });
-}
-
-function assignLetsTalkEvents() {
-  letsTalkContainer = document.querySelector("#lets-talk");
-  letsTalkContainer.addEventListener("mouseenter", e => {
-    e.stopPropagation();
-    letsTalk.play();
-    letsTalk.loop = true;
-  })
-
-  letsTalkContainer.addEventListener("mouseleave", e => {
-    letsTalk.loop = false;
-  })
-
-  letsTalkContainer.addEventListener("click", e => {
-    open("mailto:craigcontreras@protonmail.com");
-  });
-}
-
-function createViewAllAnim() {
-  viewAll = lottie.loadAnimation({
-    container: document.querySelector("#view-all-posts"),
-    renderer: 'svg',
-    loop: false,
-    autoplay: false,
-    path: "/assets/json/view-all.json"
-  });
-}
-
-function assignViewAllEvents() {
-  viewAllContainer = document.querySelector("#view-all-posts");
-  viewAllContainer.addEventListener("mouseenter", e => {
-    e.stopPropagation();
-    viewAll.play();
-    viewAll.loop = true;
-  })
-
-  viewAllContainer.addEventListener("mouseleave", e => {
-    viewAll.loop = false;
-  })
-
-  viewAllContainer.addEventListener("click", e => {
-    document.querySelector(".transition").classList.add("is-active");
-    setTimeout(() => {
-        window.location.replace("/blog.html");
-    }, 500);
-  });
-}
-
 function endlessScroll() {
   scrollEffect += 1;
   document.querySelector("#spacer").style.height = `${100 + (scrollEffect * 75)}vh`;
 
   if (complete) {
     document.removeEventListener("scroll", endlessScroll);
-    document.querySelector("#wcyd-anim").classList.remove("sticky");
     document.querySelector("#wcyd-anim").classList.add("hidden");
     document.querySelector("#spacer").classList.add("hidden");
     document.querySelector("#project-section").classList.remove("hidden");
     document.querySelector("#blog-section").classList.remove("hidden");
     document.querySelector("footer").classList.remove("hidden");
     document.querySelector("#spacer").style.display = "none";
+    loadAnimationsLoadedAfter();
   }
+}
+
+async function loadAnimationsLoadedAfter() {
+  const {createViewAllAnim, assignViewAllEvents, createLetsTalkAnim, assignLetsTalkEvents} = await import("./invisible-animations.js");
+  console.log("imported methods");
+  createViewAllAnim();
+  assignViewAllEvents();
+  createLetsTalkAnim();
+  assignLetsTalkEvents();
 }
 
 function init() {
   loadHeaderAnim();
-  createLetsTalkAnim();
-  assignLetsTalkEvents();
-  createViewAllAnim();
-  assignViewAllEvents();
-
   createScene();
   loadModel();
   window.addEventListener("resize", resize);
@@ -233,7 +180,7 @@ function init() {
   headerImg = document.querySelector("#header-img");
 
   header.addEventListener("mouseenter", (e) => {
-    const paths = ["/_includes/img/img-1.png", "/_includes/img/img-2.jpg", "/_includes/img/img-3.jpg", "/_includes/img/img-4.jpg", "/_includes/img/img-5.jpg"];
+    const paths = ["/assets/img/img-1.png", "/assets/img/img-2.jpg", "/assets/img/img-3.jpg", "/assets/img/img-4.jpg", "/assets/img/img-5.jpg"];
     const randomImg = paths[Math.floor(Math.random() * paths.length)];
     headerImg.src = randomImg;
     // set mouse cursor to the mouse pointer's position by using margin
@@ -257,15 +204,6 @@ function init() {
       headerImg.style.top = e.clientY + "px";
     });
   });
-}
-
-function unload() {
-  cancelAnimationFrame(frameId);
-  headerAnim.destroy();
-  wcydAnim.destroy();
-  letsTalk.destroy();
-  document.removeEventListener("scroll", endlessScroll);
-  window.removeEventListener("", resize);
 }
 
 document.addEventListener("DOMContentLoaded", init);
