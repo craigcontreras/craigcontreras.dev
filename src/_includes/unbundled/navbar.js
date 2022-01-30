@@ -3,12 +3,12 @@
 import lottie from "lottie-web";
 
 const hamburgerAnim = lottie.loadAnimation({
-    cçontainer: document.querySelector("#hamburger-icon"),
+    container: document.querySelector("#hamburger-icon"),
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: 'https://assets4.lottiefiles.com/packages/lf20_50hJPU.json'
-  });  
+    path: '/assets/json/hamburger.json'
+  });
 
 const hamburger = document.querySelector("#hamburger");
 let hamburgerMenuOpened;

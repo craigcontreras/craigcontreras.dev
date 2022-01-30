@@ -62,7 +62,7 @@ function loadHeaderAnim() {
     renderer: 'svg',
     loop: false,
     autoplay: true,
-    path: 'https://assets5.lottiefiles.com/packages/lf20_ftnubpoc.json'
+    path: '/assets/json/index-header.json'
   });
 }
 
@@ -94,7 +94,7 @@ function init() {
   headerImg = document.querySelector("#header-img");
 
   header.addEventListener("mouseenter", (e) => {
-    const paths = ["/assets/img/img-1.png", "/assets/img/img-2.jpg", "/assets/img/img-3.jpg", "/assets/img/img-4.jpg", "/assets/img/img-5.jpg"];
+    const paths = ["/assets/img/img-2.webp", "/assets/img/img-3.webp", "/assets/img/img-4.webp"];
     const randomImg = paths[Math.floor(Math.random() * paths.length)];
     headerImg.src = randomImg;
     // set mouse cursor to the mouse pointer's position by using margin

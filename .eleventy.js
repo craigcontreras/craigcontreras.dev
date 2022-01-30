@@ -23,7 +23,10 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("./src/assets/json/");
     eleventyConfig.addWatchTarget("./src/assets/models/");
     eleventyConfig.addPassthroughCopy("./src/assets/models/");
-    eleventyConfig.addPassthroughCopy("./node_modules/@fortawesome/fontawesome-free/js/");
+    eleventyConfig.addWatchTarget("./src/assets/fontawesome/");
+    eleventyConfig.addPassthroughCopy("./src/assets/fontawesome/");
+    eleventyConfig.addWatchTarget("./src/assets/webfonts/");
+    eleventyConfig.addPassthroughCopy("./src/assets/webfonts/");
 
     js = eleventyConfig.javascriptFunctions;
 
