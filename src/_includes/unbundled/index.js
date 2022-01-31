@@ -57,11 +57,12 @@ function animate() {
 }
 
 function loadHeaderAnim() {
-  const headerAnim = lottie.loadAnimation({
+  headerAnim = lottie.loadAnimation({
     container: document.querySelector("#intro-anim"),
     renderer: 'svg',
     loop: false,
     autoplay: true,
+    useWebWorker: false,
     path: '/assets/json/index-header.json'
   });
 }

@@ -10,6 +10,7 @@ export function createLetsTalkAnim() {
         renderer: 'svg',
         loop: false,
         autoplay: false,
+        useWebWorker: false,
         path: "/assets/json/letstalk.json"
     });
 }
@@ -37,6 +38,7 @@ export function createViewAllAnim() {
         renderer: 'svg',
         loop: false,
         autoplay: false,
+        useWebWorker: false,
         path: "/assets/json/view-all.json"
     });
 }

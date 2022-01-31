@@ -9,6 +9,7 @@ const headerAnim = lottie.loadAnimation({
     renderer: 'svg',
     loop: false,
     autoplay: true,
+    useWebWorker: false,
     path: '/assets/json/blog-header.json'
 });
 
