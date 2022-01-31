@@ -8,6 +8,7 @@ const hamburgerAnim = lottie.loadAnimation({
     loop: false,
     autoplay: false,
     useWebWorker: false,
+    progressiveLoad: true,
     path: '/assets/json/hamburger.json'
   });
 

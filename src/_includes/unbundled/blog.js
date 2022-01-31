@@ -10,6 +10,7 @@ const headerAnim = lottie.loadAnimation({
     loop: false,
     autoplay: true,
     useWebWorker: false,
+    progressiveLoad: true,
     path: '/assets/json/blog-header.json'
 });
 

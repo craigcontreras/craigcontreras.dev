@@ -13,6 +13,7 @@ export function loadWcydAnim() {
             loop: false,
             autoplay: false,
             useWebWorker: false,
+            progressiveLoad: true,
             path: '/assets/json/wcyd-animation-mobile.json'
         })
     } else {
@@ -22,6 +23,7 @@ export function loadWcydAnim() {
             loop: false,
             autoplay: false,
             useWebWorker: false,
+            progressiveLoad: true,
             path: '/assets/json/wcyd-animation-desktop.json',
             rendererSettings: {
                 preserveAspectRatio: 'xMidYMax slice'

@@ -1,6 +1,6 @@
 "use strict";
 
-import lottie from "lottie-web/build/player/lottie_light.min.js";
+import { loadAnimation } from "lottie-web/build/player/lottie_light.min.js";
 import { Scene, PerspectiveCamera, WebGLRenderer, Color, AmbientLight } from "three";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
@@ -57,12 +57,13 @@ function animate() {
 }
 
 function loadHeaderAnim() {
-  headerAnim = lottie.loadAnimation({
+  headerAnim = loadAnimation({
     container: document.querySelector("#intro-anim"),
     renderer: 'svg',
     loop: false,
     autoplay: true,
     useWebWorker: false,
+    progressiveLoad: true,
     path: '/assets/json/index-header.json'
   });
 }

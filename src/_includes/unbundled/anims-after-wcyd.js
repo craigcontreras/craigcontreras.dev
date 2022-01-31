@@ -11,6 +11,7 @@ export function createLetsTalkAnim() {
         loop: false,
         autoplay: false,
         useWebWorker: false,
+        progressiveLoad: true,
         path: "/assets/json/letstalk.json"
     });
 }
@@ -39,6 +40,7 @@ export function createViewAllAnim() {
         loop: false,
         autoplay: false,
         useWebWorker: false,
+        progressiveLoad: true,
         path: "/assets/json/view-all.json"
     });
 }
