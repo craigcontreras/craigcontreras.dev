@@ -63,6 +63,10 @@ h1, h2, h3, button, p, a, span {
     animation: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 zoomIn;
 }
 
+.fade-animation {
+    animation: 0.5 cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 fade;
+}
+
 /* Navbar */
 
 #hamburger {
@@ -132,6 +136,16 @@ footer {
 }
 
 /* animations */
+
+@keyframes fade {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
 
 @keyframes slideIn {
     0% {

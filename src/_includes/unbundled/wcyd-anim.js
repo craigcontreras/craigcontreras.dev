@@ -12,7 +12,6 @@ export function loadWcydAnim() {
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            useWebWorker: false,
             progressiveLoad: true,
             path: '/assets/json/wcyd-animation-mobile.json'
         })
@@ -22,7 +21,6 @@ export function loadWcydAnim() {
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            useWebWorker: false,
             progressiveLoad: true,
             path: '/assets/json/wcyd-animation-desktop.json',
             rendererSettings: {

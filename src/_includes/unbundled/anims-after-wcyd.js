@@ -1,16 +1,15 @@
 "use strict";
 
-import lottie from "lottie-web/build/player/lottie_light.min.js";
+import { loadAnimation } from "lottie-web/build/player/lottie_light.min.js";
 
 let letsTalk, viewAll, viewAllContainer, letsTalkContainer;
 
 export function createLetsTalkAnim() {
-    letsTalk = lottie.loadAnimation({
+    letsTalk = loadAnimation({
         container: document.querySelector("#lets-talk"),
         renderer: 'svg',
         loop: false,
         autoplay: false,
-        useWebWorker: false,
         progressiveLoad: true,
         path: "/assets/json/letstalk.json"
     });
@@ -34,7 +33,7 @@ export function assignLetsTalkEvents() {
 }
 
 export function createViewAllAnim() {
-    viewAll = lottie.loadAnimation({
+    viewAll = loadAnimation({
         container: document.querySelector("#view-all-posts"),
         renderer: 'svg',
         loop: false,

@@ -4,10 +4,8 @@ import lottie from "lottie-web/build/player/lottie_light.min.js";
 
 const hamburgerAnim = lottie.loadAnimation({
     container: document.querySelector("#hamburger-icon"),
-    renderer: 'svg',
     loop: false,
     autoplay: false,
-    useWebWorker: false,
     progressiveLoad: true,
     path: '/assets/json/hamburger.json'
   });

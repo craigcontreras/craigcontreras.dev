@@ -1,15 +1,14 @@
 "use strict";
 
-import lottie from "lottie-web/build/player/lottie_light.min.js";
+import { loadAnimation } from "lottie-web/build/player/lottie_light.min.js";
 
 window.onbeforeunload = () => window.scrollTo(0, 0);
 
-const headerAnim = lottie.loadAnimation({
+const headerAnim = loadAnimation({
     container: document.querySelector("#intro-anim"),
     renderer: 'svg',
     loop: false,
     autoplay: true,
-    useWebWorker: false,
     progressiveLoad: true,
     path: '/assets/json/blog-header.json'
 });
