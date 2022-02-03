@@ -1,8 +1,10 @@
 "use strict";
 
-import { LoadingManager, Scene, PerspectiveCamera, WebGLRenderer, Color, AmbientLight } from "three";
+import { LoadingManager, Scene, PerspectiveCamera, WebGLRenderer, Color, AmbientLight, XRRay } from "three";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import TWEEN from "@tweenjs/tween.js/dist/tween.esm.js"
 
+let position = { x: 0, y: 0, z: 10 };
 let scene, camera, renderer, frameId;
 let keyboardContainer;
 
@@ -31,7 +33,8 @@ export function loadModel() {
         function (obj) {
             // Add the loaded object to the scene
             scene.add(obj);
-            obj.position.set(0, 0, 0);
+            obj.name = "keyboard";
+            obj.position.set(position.x, position.y, position.z);
 
             setInterval(() => {
                 obj.rotateY(0.01);
@@ -43,8 +46,17 @@ export function loadModel() {
     animate();
 }
 
+const finalPosition = { x: 0, y: 0, z: 0 };
+const tween = new TWEEN.Tween(position).to(finalPosition, 750);
+tween.easing(TWEEN.Easing.Quadratic.InOut);
+tween.start();
+
 manager.onLoad = () => {
-    document.querySelector("#keyboard canvas").classList.add("fade-animation");
+    tween.onUpdate(() => {
+        scene.getObjectByName("keyboard").position.set(position.x, position.y, position.z);
+    });
+
+    animate();
 }
 
 export function resize() {
@@ -56,4 +68,5 @@ export function resize() {
 function animate() {
     frameId = requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    TWEEN.update();
 }  

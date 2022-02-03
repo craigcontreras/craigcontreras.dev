@@ -14,8 +14,7 @@ const headerAnim = loadAnimation({
 });
 
 document.querySelector("#top-post").addEventListener("click", e => {
-    let target = e.target.querySelector('a').href;
-    console.log(target);
+    let target = document.querySelector("#top-post a").href;
                 
     document.querySelector(".transition").classList.add("is-active");
     setTimeout(() => {

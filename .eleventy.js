@@ -1,4 +1,4 @@
-var { DateTime } = require("luxon");
+const { DateTime } = require("luxon");
 
 module.exports = function (eleventyConfig) {
     eleventyConfig.addFilter("dateReadable", date => {
@@ -6,7 +6,7 @@ module.exports = function (eleventyConfig) {
             zone: "system",
         }).setLocale('en').toLocaleString(DateTime.DATE_MED);
     });
-
+    
     eleventyConfig.addCollection("sortByDate", function(collection) {
         return collection.getFilteredByGlob("./src/posts/*.md").sort((a, b) => {
             return b.date - a.date;
