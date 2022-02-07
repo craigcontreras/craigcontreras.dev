@@ -4,8 +4,8 @@
 <head>
     <%- include("metadata.ejs") %>
     <% const finalTitle=title + " | Blog - Craig Contreras" %>
-        <meta name="og:site_name" content=<%=finalTitle %>>
-        <meta property="og:title" content=<%=finalTitle %>>
+        <meta name="og:site_name" content=<%= finalTitle %>>
+        <meta property="og:title" content=<%= finalTitle %>>
         <meta property="og:description" content=<%= desc %>">
         <title>
             <%= finalTitle %>
@@ -21,7 +21,7 @@
                 <h1>
                     <%= title %>
                 </h1>
-                <span><time datetime=<%=date %>><%= js.dateReadable(date) %></time></span>
+                <span><time datetime=<%= date %>><%= js.dateReadable(date) %></time></span>
                 <%- content %>
                     <footer>
                         <p>&#169; 2022 Craig Contreras</p>
