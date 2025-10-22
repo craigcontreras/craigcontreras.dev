@@ -229,7 +229,7 @@
 <div class="absolute top-[48%] left-[58%]">
 	<h1 class="font-black text-6xl">craig contreras</h1>
 	<p class="text-right">under maintenance</p>
-	<p class="text-right">contact: hello@craigcontreras.dev</p>
+	<p class="text-right">contact: craigcontreras@protonmail.com</p>
 </div>
 <div class="fixed z-1 min-w-full min-h-full w-full h-full">
 	<div
